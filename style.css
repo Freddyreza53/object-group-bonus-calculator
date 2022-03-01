@@ -1,0 +1,17 @@
+h1 {
+    text-align: center;
+}
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: relative;
+    left: 45%; */
+}
+ul {
+    padding: 5%;
+    border: 2px solid black;
+}
+#mainContainer {
+    background-image: url(https://eddy.com/wp-content/uploads/2020/03/6-Keys-to-Manage-and-Calculate-Employee-Bonuses@2x.png);
+}

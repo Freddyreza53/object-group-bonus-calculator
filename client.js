@@ -1,3 +1,5 @@
+$(document).ready(button);
+
 const employees = [
   {
     name: 'Atticus',
@@ -40,6 +42,8 @@ const employees = [
 // Ask questions when you don't.
 
 function employeeBonus(employeeArray) {
+  console.log('in employeeBonus');
+  
   let employeeCompensations = [];
 
   for (let i = 0; i < employeeArray.length; i++){
@@ -85,7 +89,7 @@ function employeeBonus(employeeArray) {
     let totalCompensation = totalBonus + Number(employeeArray[i].annualSalary);
 
     bonus = Math.floor(bonus*100);
-    
+
     let newEmployee = {
       newName: employeeArray[i].name,
       bonusPercentage: `${bonus}%`,
@@ -94,11 +98,29 @@ function employeeBonus(employeeArray) {
     }
     employeeCompensations.push(newEmployee)
   }
+  // $('#displayBonuses').append(`${employeeCompensations}`);
+  for (let i = 0; i < employeeCompensations.length; i++) {
+    $('#displayBonuses').append(`<li> Name: ${employeeCompensations[i].newName}</li>`);
+    $('#displayBonuses').append(`<li> Bonus Percentage: ${employeeCompensations[i].bonusPercentage}</li>`);
+    $('#displayBonuses').append(`<li> Total Compensation: ${employeeCompensations[i].totalCompensation}</li>`);
+    $('#displayBonuses').append(`<li> Total Bonus: ${employeeCompensations[i].totalBonus}</li>`);
+    $('#displayBonuses').append(`<br>`);
+  }
   
   return employeeCompensations;
 }
 
+function displayAllCompensations () {
 
-console.log(employeeBonus(employees));
+  console.log('in displayAllCompensations');
+  
+let comp = employeeBonus(employees);
+  
 
-console.log( employees );
+}
+
+
+function button() {
+  $('#calculate').on('click', displayAllCompensations);
+
+}
