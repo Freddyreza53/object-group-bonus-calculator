@@ -39,61 +39,66 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
-function employeeBonus(employee) {
+function employeeBonus(employeeArray) {
+  let employeeCompensations = [];
 
-  let bonus = 0;
-  if (employee.employeeNumber.length === 4) {
-    switch (employee.reviewRating) {
-    case 3:
-      bonus = 0.09;
-      break;
-    case 4:
-      bonus = 0.11;
-      break;
-    case 5:
-      bonus = 0.13;
-      break;
-    default:
-      bonus = 0;
-      break;
-    }
-  }
-  else {
-    switch (employee.reviewRating) {
-        case 3:
-          bonus = 0.04;
-          break;
-        case 4:
-          bonus = 0.06;
-          break;
-        case 5:
-          bonus = 0.10;
-          break;
-        default:
-          bonus = 0;
-          break;
+  for (let i = 0; i < employeeArray.length; i++){
+    let bonus = 0;
+    
+    if (employeeArray[i].employeeNumber.length === 4) {
+      switch (employeeArray[i].reviewRating) {
+      case 3:
+        bonus = 0.09;
+        break;
+      case 4:
+        bonus = 0.11;
+        break;
+      case 5:
+        bonus = 0.13;
+        break;
+      default:
+        bonus = 0;
+        break;
       }
-  }
+    }
+    else {
+      switch (employeeArray[i].reviewRating) {
+          case 3:
+            bonus = 0.04;
+            break;
+          case 4:
+            bonus = 0.06;
+            break;
+          case 5:
+            bonus = 0.10;
+            break;
+          default:
+            bonus = 0;
+            break;
+        }
+    }
+    
+    if ( employeeArray[i].annualSalary >= 65000 && bonus !== 0 ) {
+      bonus -= .01;
+    }
+    let totalBonus = bonus * employeeArray[i].annualSalary;
+    let totalCompensation = totalBonus + Number(employeeArray[i].annualSalary);
 
-  if ( employee.annualSalary >= 65000 && bonus !== 0 ) {
-    bonus -= .01;
-  }
-  let totalBonus = bonus * employee.annualSalary;
-  let totalCompensation = totalBonus + Number(employee.annualSalary);
-
-  bonus = Math.floor(bonus*100);
-
-  let newEmployee = {
-    newName: employee.name,
-    bonusPercentage: `${bonus}%`,
-    totalCompensation: totalCompensation,
-    totalBonus: totalBonus
+    bonus = Math.floor(bonus*100);
+    
+    let newEmployee = {
+      newName: employeeArray[i].name,
+      bonusPercentage: `${bonus}%`,
+      totalCompensation: totalCompensation,
+      totalBonus: totalBonus
+    }
+    employeeCompensations.push(newEmployee)
   }
   
-  return newEmployee;
+  return employeeCompensations;
 }
 
 
-console.log(employeeBonus(employees[2]));
+console.log(employeeBonus(employees));
 
 console.log( employees );
